@@ -11,16 +11,13 @@ program
 program.parse(process.argv);
 
 const argv = program.opts();
-// console.log(contacts);
-// index.js
-// const argv = require("yargs").argv;
 
 // TODO: рефакторить
 async function invokeAction({ action, id, name, email, phone }) {
 	switch (action) {
 		case "list":
 			const allContacts = await contacts.listContacts();
-			return console.log(allContacts);
+			return console.table(allContacts);
 
 		case "get":
 			const getContactById = await contacts.getContactById(id);
@@ -38,14 +35,5 @@ async function invokeAction({ action, id, name, email, phone }) {
 			console.warn("\x1B[31m Unknown action type!");
 	}
 }
-
-// invokeAction({ action: "get", id: "drsAJ4SHPYqZeG-83QTVW" });
-// invokeAction({
-// 	action: "add",
-// 	name: "Tetiana Kokoilo",
-// 	email: "kokoiloteitana@gmail.com",
-// 	phone: "(098) 456-9977",
-// });
-// invokeAction({ action: "remove", id: "YGV5ZEpjOS5coNKNUfnrb"});
 
 invokeAction(argv);

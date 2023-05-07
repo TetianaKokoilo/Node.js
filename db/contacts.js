@@ -2,14 +2,11 @@ const fs = require("fs/promises");
 const path = require("path");
 const { nanoid } = require("nanoid");
 
-// Розкоментуйте і запиши значення
-const contactsPath = path.join(__dirname, "contacts.json");
-// console.log(contactsPath);
 
-// TODO: задокументувати кожну функцію
+const contactsPath = path.join(__dirname, "contacts.json");
+
 async function listContacts() {
 	const data = await fs.readFile(contactsPath);
-	//   console.log(data);
 	return JSON.parse(data);
 }
 
