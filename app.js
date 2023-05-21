@@ -1,10 +1,12 @@
-const express = require('express');
+const express = require("express");
+const contacts = require("./db/contacts.json");
+const cors = require('cors');
+
+const contactsRouter = require('./routes/api/contacts')
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(cors());
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
-});
+app.use('/api/contacts', contactsRouter);
+
+app.listen(3000);
